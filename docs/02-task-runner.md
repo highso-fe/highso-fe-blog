@@ -12,11 +12,24 @@
 1. 清除已构建文件
 2. 拷贝原静态资源文件至构建输出目录
 3. 压缩 HTML、CSS、JS（并混淆）、图片（jpg、png、gif、svg）- 并发执行
+4. 为静态资源文件（css、js、jpg、png、gif、svg）加哈希校验后缀
+5. 替换模板（html、jsp、vm ）中版本修订后文件资源的引用链接
+
+#### gulp help
+
+命令台输出指令帮助信息
+
+#### gulp clean
+
+清除已构建文件
+
+#### gulp compress
+
+压缩混淆静态资源文件，同 `gulp build` 中的 1, 2, 3
 
 #### gulp revise
 
-1. 为静态资源文件（css、js、jpg、png、gif、svg）加哈希校验后缀
-2. 替换模板（html、jsp、vm ）中版本修订后文件资源的引用链接
+为静态资源文件进行版本修订，同 `gulp build` 中的 4, 5
 
 ## 核心模块
 
