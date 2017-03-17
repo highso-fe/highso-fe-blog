@@ -56,4 +56,5 @@
 
 ## 其他参考资源
 
-1. [Why Use Pump?](https://github.com/terinjokes/gulp-uglify/blob/master/docs/why-use-pump/README.md#why-use-pump)
+1. [gulpfile.js 示例](https://github.com/AnHongpeng/wheel/blob/master/gulp/haixue-example/gulpfile.js)
+2. [Why Use Pump?](https://github.com/terinjokes/gulp-uglify/blob/master/docs/why-use-pump/README.md#why-use-pump)
