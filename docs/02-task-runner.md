@@ -1,13 +1,13 @@
 嗨学网前端自动化构建
 ===
 
-> 2017-03-15
+> 2017-03-17
 
 > 使用基于文件流操作的 [gulp](http://www.gulpjs.com.cn/) 作为前端自动化构建工具。目前实现了对项目静态资源文件的压缩、混淆、版本修订。
 
 ## 指令及工作流
 
-#### gulp build (default)
+#### gulp static --XXX
 
 1. 清除已构建文件
 2. 拷贝原静态资源文件至构建输出目录
@@ -19,15 +19,15 @@
 
 命令台输出指令帮助信息
 
-#### gulp clean
+#### gulp clean --XXX
 
 清除已构建文件
 
-#### gulp compress
+#### gulp compress --XXX
 
 压缩混淆静态资源文件，同 `gulp build` 中的 1, 2, 3
 
-#### gulp revise
+#### gulp revise --XXX
 
 为静态资源文件进行版本修订，同 `gulp build` 中的 4, 5
 
@@ -39,6 +39,7 @@
 * [gulp-clean-css](https://github.com/scniro/gulp-clean-css) - 压缩 CSS 通过 [clean-css](https://github.com/jakubpawlowicz/clean-css)
 * [gulp-uglify](https://github.com/terinjokes/gulp-uglify) - 压缩 JS 通过 [UglifyJS2](https://github.com/mishoo/UglifyJS2)
 * [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) - 压缩 PNG, JPEG, GIF and SVG 图片通过 [imagemin](https://github.com/imagemin/imagemin)
+* [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps) - 提供 source map 支持
 
 #### 静态资源版本修订
 
