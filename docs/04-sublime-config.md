@@ -1,4 +1,4 @@
-Web 前端 Sublime Text 3 配置推荐
+Sublime Text 3 配置推荐
 ===
 
 > 2017-03-20
