@@ -5,6 +5,29 @@
 
 ## 浏览器对常用特性的支持情况
 
+#### HTML
+
+###### 1.语义化标签
+
+[New semantic elements](http://caniuse.com/#search=html5): IE9+ 支持，包括 `<section>`、`<article>`、`aside`、`header`、`footer`、`nav`、`figure`、`figcaption`、`time`、`mark`、`main`
+
+#### CSS 特性
+
+###### 1.CSS3 Media Queries
+
+IE9+ 支持，但不支持嵌套 media queries
+
+[兼容性参考](http://caniuse.com/#search=media)
+
+###### 2.其他特性
+
+* [CSS3 Border images](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-image): IE11+ 支持，且需要打 -moz, -webkit, -o 标签, [兼容性参考](http://caniuse.com/#search=border-image)
+* [CSS3 Border-radius](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-radius): IE9+ 支持，且需要打 -moz, -webkit 标签, [兼容性参考](http://caniuse.com/#search=border-radius)
+* [CSS3 Box-shadow](https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-shadow): IE9+ 支持，且需要打 -moz, -webkit 标签, [兼容性参考](http://caniuse.com/#search=box-shadow)
+* [Multiple background images](https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-image): IE9+ 支持
+* [CSS3 Background-image options](http://caniuse.com/#search=CSS3%20Background-image%20options): `background-clip`, `background-origin` 和 `background-size` IE9+ 支持
+* [CSS Gradients](http://caniuse.com/#search=CSS%20Gradients): IE10+ 支持, 且需要打 -moz, -webkit, -o 标签, [兼容性参考](http://caniuse.com/#search=CSS%20Gradients)
+
 #### Web API 接口
 
 ###### 1.EventTarget.addEventListener() 等事件监听 API
@@ -55,3 +78,18 @@
 ###### DOCTYPE 声明
 
 DOCTYPE 会影响浏览器渲染模式（Q: 混杂模式, A: 近标准模式, S: 标准模式），应设置成 `<!DOCTYPE html>`，确保 IE8+ / Opera9+ / Firefox10+ / Chrome10+ / Safari10+ 为标准模式，另外此时 IE6、IE7 会解析为近标准模式
+
+###### 渲染内核控制
+
+使用 `meta` 标签来强制 IE8 使用最新的内核渲染页面，避免 IE8 使用“兼容性视图”功能:
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+引导360浏览器（双核）使用 webkit 内核渲染网页:
+
+        <meta name="renderer" content="webkit">
+
+#### 兼容库
+
+* [Respond.js](https://github.com/scottjehl/Respond) - IE6-8 及其他浏览器兼容 min/max-width CSS3 Media Queries
+* [html5shiv](https://github.com/aFarkas/html5shiv) - 支持 IE6-9、Safari 4.x 和 FF 3.x、iPhone 3.x 下对 HTML5 语义化标签的使用
