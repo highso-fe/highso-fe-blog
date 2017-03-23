@@ -9,7 +9,11 @@
 
 ###### 1.语义化标签
 
-[New semantic elements](http://caniuse.com/#search=html5): IE9+ 支持，包括 `<section>`、`<article>`、`aside`、`header`、`footer`、`nav`、`figure`、`figcaption`、`time`、`mark`、`main`
+[New semantic elements](http://caniuse.com/#search=html5): IE9+ 支持，包括 `<section>`、`<article>`、`<aside>`、`<header>`、`<footer>`、`<nav>`、`<figure>`、`<figcaption>`、`<time>`、`<mark>`、`<main>`
+
+###### 2.placeholder
+
+[input placeholder attribute](http://caniuse.com/#search=placeholder): IE10+ 支持
 
 #### CSS 特性
 
@@ -93,3 +97,19 @@ DOCTYPE 会影响浏览器渲染模式（Q: 混杂模式, A: 近标准模式, S:
 
 * [Respond.js](https://github.com/scottjehl/Respond) - IE6-8 及其他浏览器兼容 min/max-width CSS3 Media Queries
 * [html5shiv](https://github.com/aFarkas/html5shiv) - 支持 IE6-9、Safari 4.x 和 FF 3.x、iPhone 3.x 下对 HTML5 语义化标签的使用
+
+#### 查询线上资源
+
+* [MDN](https://developer.mozilla.org/zh-CN/)
+* [Can I use](http://caniuse.com/#)
+* [W3C](https://www.w3.org/)
+* [Safari CSS Reference](https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariCSSRef/Introduction.html)
+* [CSS current work](https://www.w3.org/Style/CSS/current-work)
+
+#### 寻求社区力量
+
+浏览器对各种 Web 标准的实现有所差异，一些不断迭代的前端库及框架存在宿主环境兼容性问题也很正常，当我们遇到无法解决的问题时，寻求社区帮助也是一个很高效的解决方式。我们一般会在以下社区中寻求帮助或寻找问题相关解决线索:
+
+* [Stack Overflow](http://stackoverflow.com/): 高效且专业的全球 IT 技术问答网站，即使问题得不到完美解决，外国友人也会为你提供思路
+* [SegmentFault](https://segmentfault.com/): 国内技术社区，有些论坛化，不过还是卧虎藏龙的
+* [知乎](https://www.zhihu.com/): 技术高管们装X的地方，顺便兜售知识
