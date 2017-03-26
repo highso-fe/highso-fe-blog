@@ -230,6 +230,8 @@ CSS Hack 方式会大大降低代码的可维护性，请尽量避免使用
 
 * [Respond.js](https://github.com/scottjehl/Respond): IE6-8 及其他浏览器兼容 min/max-width CSS3 Media Queries
 * [html5shiv](https://github.com/aFarkas/html5shiv): 支持 IE6-9、Safari 4.x 和 FF 3.x、iPhone 3.x 下对 HTML5 语义化标签的使用
+* [es5-shim / es5-sham](https://github.com/es-shims/es5-shim): 使旧版及部分现代浏览器兼容 ES5 标准中的方法
+* [es6-shim](https://github.com/paulmillr/es6-shim): 为旧引擎浏览器尽可能地提供 ES6 方法的兼容性垫片
 * [css3pie](https://github.com/lojjic/PIE): 使 IE 支持 `border-radius`、`box-shadow`、`border-image`、`multiple background images`、`linear-gradient as background image`
 * [placeholder.js](https://github.com/NV/placeholder.js): 支持 IE6-8、Safari 4-5、FF 3.5、Chrome 3-6、Opera 9.5-10.6 下对 placeholder 属性的使用
 * [html5media](https://github.com/etianen/html5media): 使主流浏览器支持 `<video>` 和 `audio` 标签
