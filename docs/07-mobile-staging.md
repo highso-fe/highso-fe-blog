@@ -81,9 +81,8 @@
           font-weight: 200;
         }
         .fw600 {
-          font-weight: 
+          font-weight: 600;
         }
-        ...
 ```
 
 **2.clearfix 清除浮动**
@@ -101,7 +100,28 @@
         }
 ```
 
-**3.遮罩层样式**
+**3.0.5px 边框实现**
+
+```css
+        .bd0_5 {
+          position: relative;
+        }
+        .bd0_5:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 200%;
+          height: 200%;
+          box-sizing: border-box;
+          border: 1px solid transparent;
+          transform-origin: left top;
+          transform: scale(0.5);
+          z-index: -1;
+        }
+```
+
+**4.遮罩层样式**
 
 ```css
         .shade {
@@ -116,7 +136,7 @@
         }
 ```
 
-**4.人民币符号**
+**5.人民币符号**
 
 ```css
         .rmb:before {
