@@ -1,7 +1,7 @@
 移动 Web 项目前端脚手架
 ===
 
-> 2017-04-02 发布，最后更新于 2017-04-02
+> 2017-04-02 发布，最后更新于 2017-04-05
 
 [脚手架项目](https://github.com/AnHongpeng/mobile-web-case/tree/master/staging)
 
@@ -141,7 +141,6 @@
 ```css
         .rmb:before {
           content: '￥';
-          font-family: Arial;
           vertical-align: baseline;
         }
 ```
