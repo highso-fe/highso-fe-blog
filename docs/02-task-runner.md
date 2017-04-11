@@ -1,37 +1,15 @@
 嗨学网前端自动化构建
 ===
 
-> 2017-03-17
+> 发布于 2017-03-17， 最后更新于 2017-04-11
 
-> 使用基于文件流操作的 [gulp](http://www.gulpjs.com.cn/) 作为前端自动化构建工具。目前实现了对项目静态资源文件的压缩、混淆、版本修订。
-
-## 指令及工作流
-
-#### gulp static --XXX
-
-1. 清除已构建文件
-2. 拷贝原静态资源文件至构建输出目录
-3. 压缩 HTML、CSS、JS（并混淆）、图片（jpg、png、gif、svg）- 并发执行
-4. 为静态资源文件（css、js、jpg、png、gif、svg）加哈希校验后缀
-5. 替换模板（html、jsp、vm ）中版本修订后文件资源的引用链接
-
-#### gulp help
-
-命令台输出指令帮助信息
-
-#### gulp clean --XXX
-
-清除已构建文件
-
-#### gulp compress --XXX
-
-压缩混淆静态资源文件，同 `gulp build` 中的 1, 2, 3
-
-#### gulp revise --XXX
-
-为静态资源文件进行版本修订，同 `gulp build` 中的 4, 5
+> 使用基于文件流操作的 [gulp](http://www.gulpjs.com.cn/) 作为前端自动化构建工具。
 
 ## 核心模块
+
+#### 编译
+
+* [gulp-less](https://github.com/plus3network/gulp-less) - 编译 [less](https://github.com/less/less.js) 为 CSS
 
 #### 压缩
 
@@ -41,12 +19,20 @@
 * [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin) - 压缩 PNG, JPEG, GIF and SVG 图片通过 [imagemin](https://github.com/imagemin/imagemin)
 * [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps) - 提供 source map 支持
 
+#### 图片处理
+
+* [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith) - 生成 CSS 雪碧图
+
 #### 静态资源版本修订
 
 * [gulp-rev](https://github.com/sindresorhus/gulp-rev) - 在静态文件名的后面添加hash值来进行版本修订
 * [gulp-rev-css-url](https://github.com/galkinrost/gulp-rev-css-url) - 重写经 gulp-rev 哈希校验修订后的 CSS 文件中的 url
 * [gulp-rev-delete-original](https://github.com/nib-health-funds/gulp-rev-delete-original) - 删除经 gulp-rev 或 gulp-rev-all 重写的源文件
 * [gulp-rev-collector](https://github.com/shonny-ua/gulp-rev-collector) - 从 manifests 中收集版本修订信息，替换模板中的链接
+
+#### 实时加载
+
+* [browser-sync](https://github.com/browsersync/browser-sync) - 保证多个浏览器或设备网页同步显示([recipes](https://github.com/BrowserSync/gulp-browser-sync))
 
 #### 流控制
 
@@ -56,5 +42,4 @@
 
 ## 其他参考资源
 
-1. [gulpfile.js 示例](https://github.com/AnHongpeng/wheel/blob/master/gulp/haixue-example/gulpfile.js)
-2. [Why Use Pump?](https://github.com/terinjokes/gulp-uglify/blob/master/docs/why-use-pump/README.md#why-use-pump)
+1. [Why Use Pump?](https://github.com/terinjokes/gulp-uglify/blob/master/docs/why-use-pump/README.md#why-use-pump)
