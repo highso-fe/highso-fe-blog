@@ -36,6 +36,7 @@
 
 #### 流控制
 
+* [gulp-if](https://github.com/robrich/gulp-if) - 按照条件运行 task
 * [run-sequence](https://github.com/OverZealous/run-sequence) - 指定 task 运行顺序
 * [pump](https://github.com/mafintosh/pump) - pipes streams together and destroys all of them if one of them closes.
 * [del](https://github.com/sindresorhus/del) - 使用 [globs](https://github.com/isaacs/node-glob) 删除文件/文件夹.
