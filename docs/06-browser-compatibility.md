@@ -1,7 +1,7 @@
 嗨学网 PC 端浏览器兼容解决方案汇总
 ===
 
-> 2017-03-25 发布，最后更新于 2017-03-26
+> 2017-03-25 发布，最后更新于 2017-04-22
 
 ## 浏览器对常用特性的支持情况
 
@@ -48,6 +48,7 @@ Flex Box 布局 IE10+ 部分兼容并存在大量 Bug，[兼容性参考](http:/
 * [CSS3 Background-image options](http://caniuse.com/#search=CSS3%20Background-image%20options): `background-clip`, `background-origin` 和 `background-size` IE9+ 支持
 * [CSS Gradients](http://caniuse.com/#search=CSS%20Gradients): IE10+ 支持, 且需要打 -moz, -webkit, -o 标签, [兼容性参考](http://caniuse.com/#search=CSS%20Gradients)
 * [CSS filter](https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter): IE 浏览器不支持且该属性是一个实验中的功能
+* [opacity](https://developer.mozilla.org/zh-CN/docs/Web/CSS/opacity): IE9+ 支持，IE9 前应使用 `filter: alpha(opacity=xx)`
 
 #### Web API 接口
 
