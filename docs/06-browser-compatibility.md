@@ -217,6 +217,10 @@ CSS Hack 方式会大大降低代码的可维护性，请尽量避免使用
 * `*+selector or { *property }` - 仅 IE7 识别，确保 IE7 属性在该选择器的首位
 * `.selector { color: #f00\9; }` - IE8 & IE9 识别
 
+###### JS 判断 IE 各版本方案
+
+详见 [JavaScript判断IE各版本最完美解决方案#12](https://github.com/nioteam/jquery-plugins/issues/12)
+
 #### 客户端检测技术
 
 >* 能力检测：能力检测的目标不是识别特定浏览器，而是识别浏览器的能力。采用这种方式不必顾及特定的浏览器如何如何，只要确定浏览器支持特定的能力，就可以给出解决方案。
