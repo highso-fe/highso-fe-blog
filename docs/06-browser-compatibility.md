@@ -234,7 +234,7 @@ CSS Hack 方式会大大降低代码的可维护性，请尽量避免使用
 * [es5-shim / es5-sham](https://github.com/es-shims/es5-shim): 使旧版及部分现代浏览器兼容 ES5 标准中的方法
 * [es6-shim](https://github.com/paulmillr/es6-shim): 为旧引擎浏览器尽可能地提供 ES6 方法的兼容性垫片
 * [css3pie](https://github.com/lojjic/PIE): 使 IE 支持 `border-radius`、`box-shadow`、`border-image`、`multiple background images`、`linear-gradient as background image`
-* [placeholder.js](https://github.com/NV/placeholder.js): 支持 IE6-8、Safari 4-5、FF 3.5、Chrome 3-6、Opera 9.5-10.6 下对 placeholder 属性的使用
+* [placeholder.js](https://github.com/NV/placeholder.js): 支持 IE6-8、Safari 4-5、FF 3.5、Chrome 3-6、Opera 9.5-10.6 下对 placeholder 属性的使用；JQuery placeholder 插件：[jquery-placeholder](https://github.com/mathiasbynens/jquery-placeholder)
 * [html5media](https://github.com/etianen/html5media): 使主流浏览器支持 `<video>` 和 `audio` 标签
 * [selectivizr](https://github.com/keithclark/selectivizr): 模仿实现 IE6-8 下 CSS3 伪元素和属性选择器
 
