@@ -5,7 +5,7 @@
 
 ## (一) 模板引擎
 
-推荐使用兼容 IE8+、体积更小、功能覆盖广、渲染性能更加优越的 aui/art-template
+**推荐使用兼容 IE8+、体积更小、功能覆盖广、渲染性能更加优越的 aui/art-template**
 
 #### Handlebars.js
 
@@ -68,7 +68,7 @@ art-template 是一个渲染性能出众模板引擎，无论在 NodeJS 还是�
 
 ## （二）滚动与轮播插件
 
-推荐 PC Web 端使用 fullPage.js 实现全屏滚动效果，移动 Web 端使用 Swiper3 实现全屏滚动及其他触摸滑动效果
+**推荐 PC Web 端使用 fullPage.js 实现全屏滚动效果，移动 Web 端使用 Swiper3 实现全屏滚动及其他触摸滑动效果**
 
 #### fullPage.js
 
