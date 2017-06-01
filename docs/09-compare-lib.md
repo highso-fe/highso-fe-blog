@@ -1,9 +1,11 @@
 第三方库 选型对比
 ===
 
-> 2017-05-31 发布，最后更新于 2017-05-31
+> 2017-05-31 发布，最后更新于 2017-06-01
 
-## 前端模板引擎
+## (一) 模板引擎
+
+推荐使用兼容 IE8+、体积更小、功能覆盖广、渲染性能更加优越的 aui/art-template
 
 #### Handlebars.js
 
@@ -61,3 +63,59 @@ art-template 是一个渲染性能出众模板引擎，无论在 NodeJS 还是�
 |:----:|----|----|----|----|----|
 |handlebars-4.0.10|IE6+|★★★★|★★★|78kb|Star 12k|
 |art-template-4.9.1|IE8+|★★★★★|★★★★★|16kb|Star 5k|
+
+[在线速度测试](https://aui.github.io/art-template/rendering-test/)
+
+## （二）滚动与轮播插件
+
+推荐 PC Web 端使用 fullPage.js 实现全屏滚动效果，移动 Web 端使用 Swiper3 实现全屏滚动及其他触摸滑动效果
+
+#### fullPage.js
+
+* [GitHub](https://github.com/alvarotrigo/fullPage.js)
+
+A simple and easy to use libary to create fullscreen scrolling websites (also known as single page websites or onepage sites). It allows the creation of fullscreen scrolling websites, as well as adding some landscape sliders inside the sections of the site.
+
+###### 兼容性
+
+* IE8+
+* Opera
+* Safari
+* Firefox
+* Chrome
+
+###### 依赖
+
+* jQuery library. (1.6.0 minimum)
+* jquery.fullPage.js
+* jquery.fullPage.css
+
+###### 功能点
+
+* 全屏滚动封装
+* 手机端、平板电脑、触摸屏设备上的浏览器的触摸操作
+* 懒加载图片、音频视频文件
+* 自动播放嵌入式媒体
+
+#### Swiper3
+
+* [GitHub](https://github.com/nolimits4web/Swiper)
+
+Swiper - is the free and most modern mobile touch slider with hardware accelerated transitions and amazing native behavior. It is intended to be used in mobile websites, mobile web apps, and mobile native/hybrid apps. Designed mostly for iOS, but also works great on latest Android, Windows Phone 8 and modern Desktop browsers.
+
+###### 兼容性
+
+* Swiper 从 3.0 开始不再全面支持 PC 端。因此，如需在 PC 上兼容更多的浏览器，可以选择 [Swiper2.x](http://2.swiper.com.cn/)
+* Swiper2 支持移动端的 Safari，Android 2.1+，windows Phone8, 以及 PC 端的 Chrome，Firefox，IE7-10 和 Opera
+
+###### 依赖
+
+* 可单独使用，也可以结合 jQuery, jQuery Mobile, Zepto 等
+
+###### 功能点
+
+* 定位：移动端触摸滑动插件
+* progress，更细粒度控制切换特效
+* 提供封装了的动画 API
+* Flexbox 布局
+* 硬件加速过渡（如果该设备支持的话）
