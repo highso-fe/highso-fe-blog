@@ -1,7 +1,7 @@
 嗨学网前端自动化构建
 ===
 
-> 发布于 2017-03-17， 最后更新于 2017-04-11
+> 发布于 2017-03-17， 最后更新于 2017-06-02
 
 > 使用基于文件流操作的 [gulp](http://www.gulpjs.com.cn/) 作为前端自动化构建工具。
 
@@ -29,6 +29,11 @@
 * [gulp-rev-css-url](https://github.com/galkinrost/gulp-rev-css-url) - 重写经 gulp-rev 哈希校验修订后的 CSS 文件中的 url
 * [gulp-rev-delete-original](https://github.com/nib-health-funds/gulp-rev-delete-original) - 删除经 gulp-rev 或 gulp-rev-all 重写的源文件
 * [gulp-rev-collector](https://github.com/shonny-ua/gulp-rev-collector) - 从 manifests 中收集版本修订信息，替换模板中的链接
+
+#### 代码质量检测
+
+* [gulp-jshint](https://github.com/spalger/gulp-jshint) - js 代码质量检测通过 [jshint](http://jshint.com/)，配置项见 [JSHint Options](http://jshint.com/docs/options/#enforcing-options)
+* [jshint-stylish](https://github.com/sindresorhus/jshint-stylish) - 时髦的 JSHint 报告器
 
 #### 实时加载
 
