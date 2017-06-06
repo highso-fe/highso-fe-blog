@@ -22,6 +22,7 @@
 #### 图片处理
 
 * [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith) - 生成 CSS 雪碧图
+* [gulp.spritesmith-multi](https://github.com/reducejs/gulp.spritesmith-multi) - 封装 gulp.spritesmith 生成多个雪碧图及 CSS
 
 #### 静态资源版本修订
 
@@ -37,12 +38,14 @@
 
 #### 实时加载
 
-* [browser-sync](https://github.com/browsersync/browser-sync) - 保证多个浏览器或设备网页同步显示([recipes](https://github.com/BrowserSync/gulp-browser-sync))
+* [browser-sync](https://github.com/browsersync/browser-sync) - 保证多个浏览器或设备网页同步显示([recipes](https://github.com/BrowserSync/gulp-browser-sync))，配合 gulp 请参考 [Browsersync + Gulp.js](https://browsersync.io/docs/gulp)
 
 #### 流控制
 
 * [gulp-if](https://github.com/robrich/gulp-if) - 按照条件运行 task
 * [run-sequence](https://github.com/OverZealous/run-sequence) - 指定 task 运行顺序
+* [merge-stream](https://github.com/grncdr/merge-stream) - 合并多个流到一个插入的流
+* [vinyl-buffer ](https://github.com/hughsk/vinyl-buffer) - 缓冲文件流
 * [pump](https://github.com/mafintosh/pump) - pipes streams together and destroys all of them if one of them closes.
 * [del](https://github.com/sindresorhus/del) - 使用 [globs](https://github.com/isaacs/node-glob) 删除文件/文件夹.
 
