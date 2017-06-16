@@ -54,3 +54,27 @@ Web 前端分享 第一期
 ps: 推荐阅读 [《编写高质量代码》](https://book.douban.com/subject/4881987/)
 
 > 本书的核心内容是围绕 Web 前端开发的三大技术要素 — HTML、CSS 和 JavaScript 来深入地探讨编写高质量代码的方法、技巧、规范和最佳实践，从而为编写易于维护的 Web 前端代码打下坚实的基础。
+
+#### 3. 高效渲染且高可维护的 CSS
+
+###### 高可维护
+
+* 通过 class 前后缀避免命名冲突（[BEM](https://en.bem.info/)思想，Block 块、Element 元素、Modifier 修饰符，Eg. `live-chatItem--hover`），当然，还可以借助构建工具实现 CSS In JS，CSS 模块化(Eg. Webpack css loader)
+* 功能性布局 和 面向属性的 CSS (Eg. [style.css](http://git.highso.com.cn:81/fe/official/blob/master/src/css/common/style.css))
+
+###### 高效渲染
+
+* 浏览器重置（Eg. [normalize.css](http://git.highso.com.cn:81/fe/official/blob/master/src/css/common/normalize.css)）
+* 避免嵌套和无意义 Class (Eg. `.main ul li span input#address {...}`)
+
+ps: 其他细节见 [嗨学网前端开发规范](https://github.com/highso-fe/highso-fe-blog/issues/3)
+
+#### 4. 树立浏览器兼容、适配意识
+
+###### 有哪些需要兼容？
+
+* 对语言标准 API 的兼容，包括 HTML 标签，CSS 2/3，[Web API](https://developer.mozilla.org/zh-CN/docs/Web/API) - SVG Canvas 本地存储 DOM节点控制等, JS API 等。措施：往往需要引入兼容库或更换实现方案
+* 对特定浏览器的兼容方案，Eg. 360安全浏览器、移动端微信 X5 浏览器、Safari 300ms click 等
+* PC Web、移动 Web 甚至 Web 跨平台（React Native / PhoneGap）对不同设备屏幕展示宽度、高度尺寸的适配
+* Retina 适配，2倍、3倍图
+* 响应式布局适配（CSS Media Query）
