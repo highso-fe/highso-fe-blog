@@ -1,7 +1,7 @@
 Web 前端分享 第二期
 ===
 
-> 2017-07-26 发布，最后更新于 2017-07-26
+> 2017-07-26 发布，最后更新于 2017-07-27
 
 ## （一）那些重要却总被忽视的 HTML 招式
 
@@ -291,3 +291,345 @@ margin -> border -> padding -> content
 #### 4. 浏览器渲染过程
 
 ![webkit 浏览器渲染过程](../img/11/05.jpg)
+
+1. HTML 解析生成 DOM 树；CSS 解析生成 CSS 规则
+2. 分析 DOM 树和 CSS 规则，整合成一棵 Render Tree，最终用来进行绘图渲染。（`display: none;` 的元素会被 Render Tree 无视）
+3. 根据 Render Tree 进行 Layout、Painting，最终 Display
+
+在建立 Render Tree 的过程中（WebKit 中的「Attachment」过程），浏览器就要为每个 DOM Tree 中的元素根据 CSS 的解析结果（Style Rules）来确定生成怎样的 renderer。对于每个 DOM 元素，必须在所有 Style Rules 中找到符合的 selector 并将对应的规则进行合并。选择器的「解析」实际是在这里执行的，在遍历 DOM Tree 时，从 Style Rules 中去寻找对应的 selector。
+
+因为所有样式规则可能数量很大，而且绝大多数不会匹配到当前的 DOM 元素，所以有一个快速的方法来判断「这个 selector 不匹配当前元素」就是极其重要的。
+
+比较正向解析与逆向解析：「div div p em」
+
+#### 5. 如何实现响应式布局？
+
+一个网站能够兼容多个终端显示，而不是为每个终端做一个特定的版本。这个概念是为解决移动互联网浏览而诞生的。
+
+###### 媒体查询 Media Queries
+
+通过不同的媒体类型和条件定义样式表规则。
+
+* 媒体查询让 CSS 可以更精确作用于不同的媒体类型和同一媒体的不同条件。
+* 媒体查询的大部分媒体特性都接受 min 和 max 用于表达“大于或等于”和“小与或等于”
+
+媒体查询可以获取哪些值？
+
+* 设备屏幕宽高：device-width, device-height
+* 渲染窗口宽高：width, height
+* 设备的手持方向：orientation
+* 设备宽高比例：device-aspect-ratio
+* 设备分辨率：resolution
+...
+
+Eg:
+
+```css
+/*----- 响应式控制  -----*/
+@media (max-width: 1200px) {
+  /* 第一屏 */
+  .index-navBox {
+    width: 940px;
+  }
+  .index-loginWrapper {
+    margin-left: -470px;
+    width: 940px;
+  }
+}
+
+@media (max-width: 991px ) {
+  /* 第一屏 */
+  .index-navBox {
+    width: 720px;
+  }
+  .index-loginWrapper {
+    margin-left: -360px;
+    width: 720px;
+  }
+}
+
+@media (max-width: 700px ) {
+  .index-carousel {
+    position: inherit;
+  }
+  .index-loginWrapper {
+    margin-top: 0;
+    top: 55px;
+  }
+}
+```
+
+注：IE8 不支持 Media Query
+
+## （三）重新认识 JavaScript
+
+#### 1. 被人误解最深的编程语言
+
+> JavaScript 堪称 [世界上被人误解最深的编程语言](http://javascript.crockford.com/javascript.html)。虽然常被嘲为“玩具语言”，但在它看似简洁的外衣下，还隐藏着强大的语言特性。
+
+> 与大多数编程语言不同，JavaScript 没有输入或输出的概念。它是一个在宿主环境（host environment）下运行的脚本语言，任何与外界沟通的机制都是由宿主环境提供的。浏览器是最常见的宿主环境，但在非常多的其他程序中也包含 JavaScript 解释器，如 Adobe Acrobat、Photoshop、SVG 图像、Yahoo! 的 Widget 引擎，以及 Node.js 之类的服务器端环境。
+
+Js 是一种面向对象的动态语言，它包含类型、运算符、标准内置对象和方法
+
+* Js 不支持类，类这一概念在 Js 通过对象原型（object prototype）得到延续，ES6 中通过 class 封装类
+* Js 中函数也是对象，Js 允许函数在包含可执行代码的同时，能像其他对象一样被传递
+
+#### 2. 类型检测
+
+###### JS 中的数据类型
+
+* Number
+* String
+* Boolean
+* Null
+* Undefined
+* Symbol
+* Object
+    * Function
+    * Array
+    * Date
+    * RegExp
+* Error
+
+###### 三种比较操作：
+
+* 严格相等，使用 `===`
+* 非严格相等，使用 `==`，存在隐式转换
+* [Object.is](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
+
+隐式转换 Eg：
+
+```javascript
+null == undefined // true
+1 == "1.0" // true
+1 == true // true
+
+NaN === NaN // false, NaN 与任何数据类型均不等
+```
+
+附：非严格相等判断表
+
+![非严格相等](../img/11/06.png)
+
+###### 类型检测
+
+* typeof：适合基本类型及 function 检测，遇到 null 失效
+* instanceof 适合自定义对象检测，在不同 iframe 和 window 间检测时失效
+* Object.prototype.toString：IE 6/7/8 下 null 和 undefined 失效
+* constructor
+* duck type
+
+```javascript
+// typeof 适合函数对象和基本类型的判断
+typeof 100 // "number"
+typeof function() {} // "function"
+
+typeof new Object() // "object"
+typeof [1, 2] // "object"
+typeof null // "object", 历史原因
+
+// 判断对象类型，更常用 instanceof，基于原型链的判断
+A instanceof B // 判断 A 对象的原型链上是否有 B 构造函数的 prototype 属性
+
+[1, 2] instanceof Array // true
+new Object() instanceof Array // false
+
+// Object.prototype.toString
+Object.prototype.toString.apply([]) // "[object Array]"
+Object.prototype.toString.apply(function() {}) // "[object Function]"
+Object.prototype.toString.apply(null) // "[object Null]"
+Object.prototype.toString.apply(undefined) // "[object Undefined]"
+
+// 注：IE 6/7/8 Object.prototype.toString.apply(null) 返回 [object Object]
+```
+
+附：[jQuery 和 lodash 都在用的类型检测模块](https://github.com/AnHongpeng/wheel/blob/master/utils/detector/index.js)
+
+#### 3. 认识 DOM
+
+DOM（Document Object Model），文档对象模型，定义访问和处理 HTML 文档的标准方法。DOM 将 HTML 文档呈现为带有元素、属性和文本的树结构（节点树）
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+    <h2><a href="#">DOM</a></h2>
+    <p>对 DOM 元素进行操作</p>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JS</li>
+    </ul>
+</body>
+</html>
+```
+
+上面代码对应的节点树结构：
+
+![对应节点树](../img/11/07.jpg)
+
+DOM 节点包括：元素节点、文本节点、属性节点
+
+* 访问节点：
+    * getElementById
+    * getElementsByName
+    * getElementsByTagName
+    * elementNode.childNodes
+    * elementNode.parentNode
+* 插入节点：
+    * appendChild
+    * insertBefore
+* 删除节点：
+    * removeChild
+* 替换节点：
+    * replaceChild
+* 创建节点：
+    * createElement
+    * createTextNode
+
+附：[DOM 事件标准](https://w3c.github.io/uievents/)
+
+#### 4. Ajax 与 [XMLHttpRequest](https://dvcs.w3.org/hg/xhr/raw-file/tip/Overview.html)
+
+> Ajax，Asynchronous JavaScript + XML，它是 2005 年被提出的新术语，代表一个技术集合，使网页不需要重载（刷新）整个页面就可以将请求的数据带给用户，大大提高了网站的用户体验。
+
+三步：
+
+* 使用 HTML 和 CSS 实现页面，表达信息；
+* 使用 XMLHttpRequest 和 Web 服务器进行数据的异步交换；
+* 使用 JS API 操作 DOM，实现动态局部更新
+
+###### 同步与异步
+
+![同步](../img/11/08.png)
+
+###### XMLHttpRequest
+
+> XMLHttpRequest API 是 AJAX 的核心
+
+> XMLHttpRequest 是一个 API, 它为客户端提供了在客户端和服务器之间传输数据的功能。它提供了一个通过 URL 来获取数据的简单方式，并且不会使整个页面刷新。这使得网页只更新一部分页面而不会打扰到用户。XMLHttpRequest 在 AJAX 中被大量使用。
+
+> XMLHttpRequest 是一个 JavaScript 对象，它最初由微软设计,随后被 Mozilla、Apple 和 Google采纳. 如今,该对象已经被 W3C 组织标准化. 通过它,你可以很容易的取回一个 URL 上的资源数据. 尽管名字里有 XML, 但 XMLHttpRequest 可以取回所有类型的数据资源，并不局限于XML。 而且除了 HTTP ,它还支持 file 和 ftp 协议.
+
+[XMLHttpRequest API - MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest)
+
+###### 创建 XHR 对象
+
+```javascript
+var request;
+
+if (window.XMLHttpRequest) {
+    request = new XMLHttpRequest(); // IE7+, Firefox, Chrome, Safari...
+} else {
+    request = new ActiveXObject('Microsoft.XMLHTTP'); // 珍爱生命，远离 IE5/6
+}
+```
+
+###### 发送 HTTP 请求
+
+* `open(method, url, async)` 规定 HTTP 请求的方式、地址、是否异步
+* `send(string)` 将请求发送到服务器
+
+```javascript
+request.open('POST', 'create.php', true);
+request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+request.send('name=王二狗&sex=男');
+```
+
+###### XHR 获取响应
+
+* responseText：获取字符串形式的响应数据
+* responseXML
+* status 和 statusText：以数字和文本形式返回 HTTP 状态码
+
+通过监听 XHR 对象的 readyState 属性变化来判断服务器响应情况：
+
+0：请求未初始化，open 未调用
+1：服务器连接已经建立，open 已调用
+2：请求已接收，也就是接收到头信息了
+3：请求处理中，也就是接收到响应主体了
+4：请求已完成，响应已就绪
+
+```javascript
+request.onreadystatechange = function() {
+    if (request.readyState === 4 && request.status === 200) {
+        // request.responseText 做一些事情
+    }
+}
+```
+
+## （四）模块模式
+
+ES5 没有内建的模块机制，ES6 通过 export 和 import 关键字来声明模块，另外 CommonJS 也有一套模块声明规则。
+
+模块模式包括：
+
+* 命名空间：用于减少模块之间的命名冲突
+* 即时函数：用于提供私有作用域及初始化操作
+* 私有属性与方法
+* 作为返回值的对象：该对象作为模块提供公有 API
+
+Eg.直播/回放公有模块：
+
+```javascript
+window.util.namespace('module.live');
+
+window.module.live = (function() {})(
+    function _getResizeNum(measureObj) {
+        ... _STATIC.STATUS_BEFORE_LIVE ...
+        ...
+    }
+
+    function _resizeWin() {
+        ... _STATIC.STATUS_BEFORE_LIVE ...
+        _getResizeNum(xxx);
+        ...
+    }
+
+    var _STATIC = {
+        STATUS_BEFORE_LIVE: 0,
+        STATUS_DURING_LIVE: 1,
+        STATUS_AFTER_LIVE: 2,
+        STATUS_DURING_PLAYBACK: 3,
+    };
+
+    var _sidebarStatus = true,
+        _sWin = {
+            x: 0,
+            y: 0,
+            width: 0,
+            mouseX: 0,
+            noticeOffsetX: 0,
+            noticeOffsetY: 0,
+            noticeMouseStatus: false,
+            winNoticeT: null
+        };
+
+    return {
+        STATIC: _STATIC,
+        resizeWin: _resizeWin
+    };
+);
+```
+
+Eg. 调用公有模块
+
+```javascript
+    // 加载模块依赖
+    var live = window.module.live;
+
+    live.STATIC.xxx ...
+    live.resizeWin();
+    ...
+```
+
+## （五）应用层/组件层 分层开发
+
+![js 分层开发](../img/11/09.png)
+
+* 为组件层封装统一的生命周期
+* 应用层以配置传参的方式调用组件
