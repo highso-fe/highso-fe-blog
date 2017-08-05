@@ -34,6 +34,7 @@
 * [react & react-dom](https://github.com/facebook/react)
 * [react-router](https://github.com/ReactTraining/react-router)
 * [react-css-modules](https://github.com/gajus/react-css-modules)
+* [prop-types](https://github.com/facebook/prop-types)
 
 ## Redux 
 
