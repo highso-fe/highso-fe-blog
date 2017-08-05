@@ -13,8 +13,10 @@
 
 |知识点|掌握程度|备注
 |:----:|----|----|
-|React v0.14.8|★★★★★|v15 后不再兼容 IE8|
+|React|★★★★★|v15 后不再兼容 IE8|
+|Redux|★★★★★|数据状态管理|
 |JSX|★★★★★|类 XML 语法的 ECMAScript 扩展|
+|ES6|★★★★★|EcmaScript 2015 标准|
 
 ## 工具
 
@@ -23,12 +25,20 @@
 |[Webpack](https://webpack.js.org/)|★★★★★|模块打包器|
 |[Babel](http://babeljs.cn/)|★★★|JS 语法编译工具|
 |[react-devtools](https://facebook.github.io/react/blog/2015/09/02/new-react-developer-tools.html)|★★★|React 浏览器调试工具|
+|[redux-devtools](https://github.com/gaearon/redux-devtools)|★★★|Redux 浏览器调试工具|
 
-## React 相关库
+## React
 
+* [react & react-dom](https://github.com/facebook/react)
+* [react-router](https://github.com/ReactTraining/react-router)
 * [react-css-modules](https://github.com/gajus/react-css-modules)
 
-## Babel 相关库
+## Redux 
+
+* [redux](https://github.com/reactjs/redux)
+* [react-redux](https://github.com/reactjs/react-redux)
+
+## Babel
 
 * [babel-core](https://github.com/babel/babel/tree/master/packages/babel-core)
 * [babel-loader](https://github.com/babel/babel-loader)
