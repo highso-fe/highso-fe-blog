@@ -1,7 +1,7 @@
 嗨学网 FED React 技术栈
 ===
 
-> 2017-08-05 发布，最后更新于 2017-08-05
+> 2017-08-05 发布，最后更新于 2017-08-06
 
 |程度|表示|
 |:----:|----|
@@ -53,6 +53,8 @@
 
 * [style-loader](https://github.com/webpack-contrib/style-loader)
 * [css-loader](https://github.com/webpack-contrib/css-loader)
+* [file-loader](https://github.com/webpack-contrib/file-loader)
+* [url-loader](https://github.com/webpack-contrib/url-loader)
 * [react-hot-loader](https://github.com/gaearon/react-hot-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 * [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)
@@ -62,3 +64,7 @@
 ## Node package
 
 * [classnames](https://www.npmjs.com/package/classnames): A simple javascript utility for conditionally joining classNames together
+
+## Polyfill
+
+* [whatwg-fetch](https://www.npmjs.com/package/whatwg-fetch)
