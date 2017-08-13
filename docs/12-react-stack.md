@@ -1,7 +1,7 @@
 嗨学网 FED React 技术栈
 ===
 
-> 2017-08-05 发布，最后更新于 2017-08-06
+> 2017-08-05 发布，最后更新于 2017-08-13
 
 |程度|表示|
 |:----:|----|
@@ -60,6 +60,12 @@
 * [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)
 * [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)
 * [Source Map 技术](https://webpack.js.org/configuration/devtool/)
+
+## 其他解决方案
+
+* [moment](https://github.com/moment/moment)
+* [react-highcharts](https://github.com/kirjs/react-highcharts)
+* [react-day-picker](https://github.com/gpbl/react-day-picker)
 
 ## Node package
 
