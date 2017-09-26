@@ -1,24 +1,16 @@
-React技术栈IE8的兼容解决方案汇总
+React技术栈 IE8 兼容解决方案汇总
 ===
 
-> 2017-09-25 发布，最后更新于 2017-09-25
+> 2017-09-25 发布，最后更新于 2017-09-26
 
-## Web特性兼容，如H5、CSS、JS、WebAPI的兼容
+## Web特性兼容
 
-### 1.HTML 5
+#### CSS
 
-* [html5shiv](https://github.com/aFarkas/html5shiv): 支持 IE6-9、Safari 4.x 和 FF 3.x、iPhone 3.x 下对 HTML5 语义化标签的使用
-* [html5media](https://github.com/etianen/html5media): 使主流浏览器支持 `<video>` 和 `audio` 标签
-* [placeholder.js](https://github.com/NV/placeholder.js): 支持 IE6-8、Safari 4-5、FF 3.5、Chrome 3-6、Opera 9.5-10.6 下对 placeholder 属性的使用；JQuery placeholder 插件：[jquery-placeholder](https://github.com/mathiasbynens/jquery-placeholder)
+* [postcss fallbacks](https://github.com/postcss/postcss/blob/master/docs/plugins.md#fallbacks)
+* [oldie](https://github.com/jonathantneal/oldie)
 
-### 2.CSS
-
-* [css3pie](https://github.com/lojjic/PIE): 使 IE 支持 `border-radius`、`box-shadow`、`border-image`、`multiple background images`、`linear-gradient as background image`
-* [Respond.js](https://github.com/scottjehl/Respond): IE6-8 及其他浏览器兼容 min/max-width CSS3 Media Queries
-* [selectivizr](https://github.com/keithclark/selectivizr): 模仿实现 IE6-8 下 CSS3 伪元素和属性选择器
-* `react-css-module`在ie8下不支持，用`cssModule`就可以了
-
-### 3.JS、WebAPI
+#### JS、WebAPI
 
 * [es5-shim / es5-sham](https://github.com/es-shims/es5-shim): 使旧版及部分现代浏览器兼容 ES5 标准中的方法（shim与sham区别：shim使ES5 中有些方法，可以在旧 JS 引擎中完美模拟。ES5 中其他无法被完美模拟的方法，就由 sham 承包了。 sham 只承诺你用的时候代码不会崩溃，至于对应的方法是不是起作用它就不保证了，它只是尽力模拟。所以要用的方法在 shim 中都包含了，那么就不需要 sham 。sham 能不引用就不引用。但是如果要用的方法只包含在 sham 中，那要明白 sham 只是保证不崩溃，并不能保证对应方法的功能正确。另外 sham 依赖 shim）
 * [es6-shim](https://github.com/paulmillr/es6-shim): 为旧引擎浏览器尽可能地提供 ES6 方法的兼容性垫片
@@ -44,20 +36,20 @@ React技术栈IE8的兼容解决方案汇总
 
 ## 核心库兼容选型（react react-dom redux react-router）
 
-### 1.react和react-dom
+#### 1.react和react-dom
 为了兼容IE8，react选用0.14.8版本。从 React v15 开始，React DOM 将不会再支持 IE8 了。
 
-### 2.redux
+#### 2.redux
 选用最新版本。Redux 源文件由 ES2015 编写，但是会预编译到 CommonJS 和 UMD 规范的 ES5，所以它可以支持[任何现代浏览器](https://caniuse.com/#feat=es5)。Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux 除了和 React 一起用外，还支持其它界面库。
 
-### 3.react-router
+#### 3.react-router
 react-router选用2.8.1版本。react使用的是低版本（v0.14.8），所以react-router也只能选用对应的低版本。官方同时维护 2.x 和 4.x 两个版本，所以前者依然可以用在项目中。
 
-## 核心库API兼容（版本15.6.0【后台系统】 0.14.8【前台系统】）
+## 核心库 API 兼容
 
-### 1.react14到15版本变更
+#### 1.react14到15版本变更
 
-#### 主要变更
+###### 主要变更
 
 * 加入了`document.createElement`，取消了`data-reactid`
 关于与`DOM`的交互方式，发生了重大改动。最显著的改动在于：不再为每个`DOM`节点设置`data-reactid`属性，使react更加轻量级。此外在变更后，在最初的渲染中也能使用`document.createElement`了。随着浏览器的优化，使用`createElement`之后，React速度更快。使用id将事件映射回React组件，代表着尽管存在着大量的缓存数据，每个事件仍要完成一堆的工作。我们都有这样的经历：缓存，尤其是无效缓存很容易导致出错，结果就是这些年来出现了一大堆难以复现的问题。现在，由于对节点有了控制权，在渲染时我们可以构建出直接映射。
@@ -71,12 +63,12 @@ react-router选用2.8.1版本。react使用的是低版本（v0.14.8），所以
 * 改进对`svg`的支持
 现在React将完全支持所有的`SVG标签`（不常见的SVG标签不会出现在`React.DOM`元素助手中，不过`JSX`和`React.createElement`适用于所有的标签名），并支持浏览器实现的所有`SVG属性`。
 
-#### 关键性变动
+###### 关键性变动
 * `React.cloneElement()`现在包括`defaultProps`
 修复了`React.cloneElement()`中的bug，如果`cloneElement()`接收到的某些`props`是`undefined`，常返回带有未定义值的元素。在React 15中，我们将其修改为与`createElement()`保持一致。现在任何发送给`cloneElement()`的未定义`props`都有相应的组件`defaultProps`了。
 * `ReactPerf.getLastMeasurements()`晦涩不明 
 
-#### 删除的内容
+###### 删除的内容
 * 在v0.14版本中，这些内容已经被标记为将要移除的内容：
 从React顶层输出中移除的`API`包括：`findDOMNode`、`render`、`renderToString`、`renderToStaticMarkup`以及`unmountComponentAtNode`。在此提醒，这些API现在在`ReactDOM`和`ReactDOMServer`中可用。
 * 移除的插件包括：`batchedUpdates`以及`cloneWithProps`。
@@ -85,7 +77,7 @@ react-router选用2.8.1版本。react使用的是低版本（v0.14.8），所以
 * 将`children`发送给类似`<input>`之类的空元素的做法被取消了，现在改成抛出异常。
 * 在`DOMrefs`（例如`this.refs.div.props`）中使用`React-specific`属性的做法也被删除了。
 
-#### 新的警告提醒
+###### 新的警告提醒
 * 如果你使用精简后的开发版，`React DOM`会提示你使用速度更快的生产版。
 
 * `React DOM`：在指定没有单位的`CSS`值为字符串时，以后的版本将不会自动添加`px`字样。当前的版本在此类情况下（比如编写style={{width: '300'}}）会发出警告。类似width: 300这样的无单位数据值不会被修改。
@@ -114,7 +106,7 @@ react-router选用2.8.1版本。react使用的是低版本（v0.14.8），所以
 
 * `PropTypes`：`arrayOf()`与`objectOf()`会为无效参数提供更详尽的错误信息。
 
-#### 其他优化
+###### 其他优化
 
 * React现在使用`loose-envify`来代替`envify`，所以安装的过度依赖较之前更少。
 
@@ -130,13 +122,20 @@ react-router选用2.8.1版本。react使用的是低版本（v0.14.8），所以
 
 * React改进了`createClass()`在复杂参数中的性能表现。
 
-### 2.React v0.14.8
+#### 2.React v0.14.8
+
 * 在服务器上渲染时修复内存泄漏(Fixed memory leak when rendering on the server)
 
-### 3.React v15.6.0
-* 声明式设计 − 采用声明范式，可以轻松描述应用，无痛创建交互式 UI 。
-* 基于组件 − 通过 React 构建组件，使得代码更加容易得到复用，然后组合它们以创建复杂的 UI 。
-* 高效易用 − 不对技术堆栈的其余部分做出假设，可以在 React 中开发新功能，而无需重写现有的代码。
+#### 3.React v15.6.0
+
 * 该版本替换了原来的降级弃用警告(用 `console.warn `取代` console.error `)，添加了 `React.createClass` 的弃用警告，并为 React.DOM 格式助手添加了单独的模块。此外，针对 React DOM ，还在 style 属性中添加对 CSS 变量的支持，以及对 CSS 网格样式属性的支持。
 
+## TODO List
 
+* （待定）JSX H5 语义标签的应用
+* （待定）`input` 和 `textarea` 的 `placeholder` 功能可参考 [react-input-placeholder](https://github.com/enigma-io/react-input-placeholder)
+* （待定）[react-css-module](https://www.npmjs.com/package/react-css-modules) 在ie8下不支持，用 `cssModule` 就可以了
+
+## 其他优秀资源
+
+* [react-ie8](https://github.com/xcatliu/react-ie8)
