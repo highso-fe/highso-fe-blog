@@ -48,6 +48,7 @@
 * [babel-preset-es2015](http://babeljs.cn/docs/plugins/preset-es2015/)
 * [babel-preset-react](http://babeljs.cn/docs/plugins/preset-react/)
 * [babel-preset-stage-0](http://babeljs.cn/docs/plugins/preset-stage-0/)
+* [babel-plugin-import](https://github.com/ant-design/babel-plugin-import)
 
 ## Webpack
 
@@ -61,11 +62,20 @@
 * [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)
 * [Source Map 技术](https://webpack.js.org/configuration/devtool/)
 
+## 数据处理
+
+* [lodash](https://github.com/lodash/lodash)
+
+## 视觉库
+
+* [Ant Design](https://github.com/ant-design/ant-design)
+* [react-highcharts](https://github.com/kirjs/react-highcharts)
+* [react-day-picker](https://github.com/gpbl/react-day-picker)
+* [three.js](https://github.com/mrdoob/three.js)
+
 ## 其他解决方案
 
 * [moment](https://github.com/moment/moment)
-* [react-highcharts](https://github.com/kirjs/react-highcharts)
-* [react-day-picker](https://github.com/gpbl/react-day-picker)
 
 ## Node package
 
