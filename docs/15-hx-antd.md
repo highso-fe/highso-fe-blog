@@ -7,7 +7,18 @@ hx-antd
 
 为解决底层样式冲突问题，我们 fork 了 Ant Design v2.13.4，对源码做了部分更改（删除了部分 CSS Reset），并在 [NPM](https://www.npmjs.com/) 上发布了 [hx-antd](https://www.npmjs.com/package/hx-antd)。后续遇到类似自定制问题可以 clone 该项目修改代码后重新发布到 NPM。
 
-## 本地开发 hx-ant-design 流程
+## hx-antd 用例
+
+###### 加入项目依赖：
+
+        npm i --registry https://r.cnpmjs.org/ --save hx-antd
+
+###### 引入 hx-antd 组件：
+
+        import { DatePicker } from 'hx-antd';
+        import 'hx-antd/lib/date-picker/style/css';
+
+## 本地开发 hx-antd 流程
 
 1. clone 项目后，根目录下 `npm i --registry https://r.cnpmjs.org/` 安装依赖 node 包
 2. 主体功能及样式代码位于 `/components` 下
@@ -15,6 +26,23 @@ hx-antd
 4. `npm run pub` 进行发布 NPM 前的 Less、JS 预编译，会生成 `/es`, `/lib`, `/dist` 目录用于后续正式发布
 5. `npm login` 登录 NPM
 6. `npm publish` 正式发布 NPM 包
+
+## 特别注意
+
+Ant Design 组件核心基础样式使用怪异盒模型 `box-sizing: border-box;`。因此使用 Ant Design 的项目 `normaleze.css` 需要添加以下 CSS：
+
+```css
+    * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    *:before,
+    *:after {
+        box-sizing: border-box;
+    }
+```
+
+并且项目 CSS 盒模型应以 `border-box` 为基准进行样式开发。
 
 ## 关注更新信息
 
