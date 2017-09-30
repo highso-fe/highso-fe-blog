@@ -3,7 +3,7 @@ hx-antd
 
 > 2017-09-30 发布，最后更新于 2017-09-30
 
-项目中在按需加载 [ant-design](https://github.com/ant-design/ant-design)（MIT License）组件时发现 **引入组件的同时会连带引入 Ant Design 核心样式模块中的一些全局样式（[源码-核心样式入口](https://github.com/ant-design/ant-design/blob/master/components/style/core/index.less)）。**因此会对我们项目本身设定的一些浏览器重置样式及全局公有样式存在覆盖，导致一些样式、交互表现异常。
+项目中在按需加载 [ant-design](https://github.com/ant-design/ant-design)（MIT License）组件时发现：引入组件的同时会连带引入 Ant Design 核心样式模块中的一些全局样式（[源码-核心样式入口](https://github.com/ant-design/ant-design/blob/master/components/style/core/index.less)）。因此会对我们项目本身设定的一些浏览器重置样式及全局公有样式存在覆盖，导致一些样式、交互表现异常。
 
 为解决底层样式冲突问题，我们 fork 了 Ant Design v2.13.4，对源码做了部分更改（删除了部分 CSS Reset），并在 [NPM](https://www.npmjs.com/) 上发布了 [hx-antd](https://www.npmjs.com/package/hx-antd)。后续遇到类似自定制问题可以 clone 该项目修改代码后重新发布到 NPM。
 
