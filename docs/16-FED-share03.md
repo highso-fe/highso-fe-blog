@@ -12,8 +12,15 @@ FED-share03
     $.ajax({
         url: '/path/to/file',
         type: 'default GET (Other values: POST)',
-        headers: {'Content-Type': 'text/plain; charset=utf-8'}
-        async: 'default: true(Other values: false)'
+        timeout: 10000, // 毫秒
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Access-Token');
+        },
+        headers: {
+            'Access-Token': $.cookie('access_token'),
+            'Content-Type': 'text/plain; charset=utf-8'
+        },
+        async: 'default: true(Other values: false)',
         dataType: 'default: Intelligent Guess (Other values: xml, json, script, html, jsonp, or text)',
         data: {param1: 'value1'},
         success: function(res) {
@@ -26,6 +33,10 @@ FED-share03
             console.log('complete');
         }
     })
+
+###### beforeSend(Function):
+
+在发送请求之前调用，并且传入一个XMLHttpRequest作为参数。可进行 xhr 的配置。
 
 ###### headers(Object): 
 
