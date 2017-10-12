@@ -318,3 +318,181 @@ FED-share03
 使用 jq 提供的 [事件委派 api](http://jquery.cuishifeng.cn)。
 
 ## （三） 模块化
+
+#### 1. 什么是模块化
+
+模块化是指解决一个复杂问题时自顶向下逐层把系统划分成若干模块的过程，有多种属性，分别反映其内部特性。
+
+#### 2. 为什么要采用模块化
+
+随着网站逐渐变成"互联网应用程序"，嵌入网页的 Javascript 代码越来越庞大，越来越复杂。前端迫切需要一种能够实现代码管理的开发方式，于是，模块化开发就被引入到了前端中。
+
+#### 3. 怎么使用模块化
+
+虽然概念早就已经有了，但是 Javascript 不是一种模块化编程语言，它不支持其他语言的"类"（class），更遑论"模块"（module）了。（ECMAScript标准第六版已经正式支持"类"和"模块"了。）
+
+Javascript 社区做了很多努力，在现有的运行环境中，实现了"模块"的效果。
+
+###### 原始写法：
+
+    function module1() {
+        //...
+    }
+    
+    function module2() {
+        //...
+    }
+
+模块就是实现特定功能的一组方法。
+
+只要把不同的函数（以及记录状态的变量）简单地放在一起，就算是一个模块。
+
+###### 对象写法：
+
+    var module1 = new Object({
+        _count : 0,
+        m1 : function (){
+    　　　　//...
+    　　},
+    　　m2 : function (){
+    　　　　//...
+    　　}
+    });
+
+上面的函数m1()和m2(），都封装在module1对象里。使用的时候，就是调用这个对象的属性。
+
+    module1.m1()    
+
+但是，这样的写法会暴露所有模块成员，内部状态可以被外部改写。比如，外部代码可以直接改变内部计数器的值。
+
+    module1._count = 7;   
+
+###### 立即执行函数写法：
+
+    var module1 = (function(){
+    
+    　　function m1() {
+    　　　　//...
+    　　};
+    
+    　　function m2() {
+    　　　　//...
+    　　};
+    
+    　　var _count = 0;
+    
+    　　return {
+    　　　　m1 : m1,
+    　　　　m2 : m2
+    　　};
+    })();
+
+使用上面的写法，外部代码无法读取内部的_count变量。这种方式也是 js 模块化的基本方式。
+
+###### 扩展模式：
+
+    // 实现模块之间的扩展继承    
+    var module1 = (function(mod){
+    
+    　　mod.m3 = function() {
+            // ...
+        }
+    
+    　　return mod;
+    })(module1);
+
+通过上面的代码，为 module1 添加了一个 m3 方法，并返回新的 module1 模块。
+
+    // 加入容错机制    
+    var module1 = (function(mod){
+    
+    　　mod.m3 = function() {
+            // ...
+        }
+    
+    　　return mod;
+    })(window.module1 || {});
+
+因为在浏览器环境中，模块各个部分通常都是从网上获取的，有时无法知道哪个部分会先加载。所以需要加入一些容错机制，形成“宽放大”。
+
+    // 输入全局变量   
+    var module1 = (function($){
+    
+        // ...
+        
+    })(jQuery);
+
+独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。为了在模块内部调用全局变量，必须显式地将其他变量输入模块。同时也体现了模块间的依赖关系。
+
+###### 管理模块命名空间：
+
+    // 常规定义
+    window.module1 = (function(){
+        // ...
+    })();
+
+通过显式声明模块名的方式，我们得到了一个 window 对象下的 module1。但是这种方式有可能产生命名冲突，覆盖了其他模块。
+
+    // 集中管理
+    window.live.module1 = (function(){
+        // ...
+    })();
+    
+    window.static.module1 = (function(){
+        // ...
+    })();
+
+使用在模块名前加入模块分类名的方式，我们避免了不同类下同名模块之间的冲突。
+ 
+    // 定义嵌套命名空间
+    function namespace(name) {
+        var parts = name.split('.'),
+            crt = window,
+            i;
+    
+        for (i = 0; i < parts.length; i++) {
+            if (!crt[parts[i]]) {
+                crt[parts[i]] = {};
+            }
+            crt = crt[parts[i]];
+        }
+    }
+    
+    namespace('static.sensitive'); // window.static.sensitive = {};
+
+通过以上代码，我们实现了对模块命名空间的管理。
+
+#### 4. CommonJS、AMD 规范：
+
+###### CommonJS：
+
+2009年，美国程序员Ryan Dahl创造了node.js项目，将javascript语言用于服务器端编程。
+
+这标志"Javascript模块化编程"正式诞生。因为老实说，在浏览器环境下，没有模块也不是特别大的问题，毕竟网页程序的复杂性有限；但是在服务器端，一定要有模块，与操作系统和其他应用程序互动，否则根本没法编程。
+
+node.js的模块系统，就是参照CommonJS规范实现的。在CommonJS中，有一个全局性方法require()，用于加载模块。假定有一个数学模块math.js，就可以像下面这样加载。
+
+    var math = require('math');
+    
+    math.add(2, 3);
+
+但是这种加载方式在浏览器环境有一个重大的缺陷，即当同步代码加载模块时会卡住浏览器，当网络不好时，会产生一种浏览器假死现象。因此，浏览器端的模块，不能采用"同步加载"（synchronous），只能采用"异步加载"（asynchronous）。这就是AMD规范诞生的背景。
+
+###### AMD：
+
+AMD是"Asynchronous Module Definition"的缩写，意思就是"异步模块定义"。它采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。
+
+AMD也采用require()语句加载模块，但是不同于CommonJS，它要求两个参数：
+
+    require([module], callback);
+
+第一个参数[module]，是一个数组，里面的成员就是要加载的模块；第二个参数callback，则是加载成功之后的回调函数。如果将前面的代码改写成AMD形式，就是下面这样：
+
+    require(['math'], function(math) {
+        math.add(2, 3)
+    });
+
+math.add()与math模块加载不是同步的，浏览器不会发生假死。所以很显然，AMD比较适合浏览器环境。
+目前，主要有两个Javascript库实现了AMD规范：require.js和curl.js。
+
+
