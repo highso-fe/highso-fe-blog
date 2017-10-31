@@ -172,6 +172,24 @@ FED-share03
 2. def.fail()：延迟失败时调用，对应 error 函数。
 3. def.always()：不论成功失败均调用，对应 complete 函数。
 
+###### 自定义延迟对象：
+
+    var dtd = $.Deferred(); // 新建一个deferred对象
+    
+    var wait = function(def){ 
+        setTimeout(function(){
+            console.log("执行完毕！");  
+            def.resolve(); // 改变deferred对象的执行状态
+        }, 5000); 
+        return def;
+    };
+    
+    wait(dtd)
+        .done(function(){ console.log("成功"); })  
+        .fail(function(){ console.log("失败"); });  
+
+以上代码执行之后，定时器中的回调函数会先打印，5s 之后再打印成功/失败。
+
 #### 3. 使用延迟对象的 ajax 请求
 
     $.ajax({
@@ -277,9 +295,23 @@ FED-share03
 
 #### 3. 事件委派
 
+###### 事件模型 （[详细介绍](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events)）：
+
+事件冒泡（ Event Bubbling）：IE 的事件流叫做事件冒泡，即事件开始时由最具体的元素接收，然后逐级向上传播到较为不具体的节点。
+
+事件捕获（ Event Capturing）：事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。
+
+jQuery 使用冒泡系统。如果想要设置捕获，则可以调用 target.addEventListener(type, listener, useCapture Optional );
+
+其中：
+
+1. type：字符串，表示监听的事件类型
+2. listener：监听器对象（JavaScript函数），在指定事件发生时可以收到通知
+3. useCapture：布尔值，是否注册到捕获阶段
+
 ###### 什么是事件委派：
 
-利用 [事件冒泡](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events) 原理，将事件触发绑定在父级元素上，根据事件对象event.target获取到事件源，这就是事件委派。通俗的说就是：将每一个下级都要办的事交给了一个统一的上司去办。（例：采购办公用品）
+利用 事件冒泡 原理，将事件触发绑定在父级元素上，根据事件对象event.target获取到事件源，这就是事件委派。通俗的说就是：将每一个下级都要办的事交给了一个统一的上司去办。（例：采购办公用品）
 
 ###### 事件委派的优势：
 
